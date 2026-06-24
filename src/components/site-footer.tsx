@@ -1,9 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { SITE } from "@/lib/site-config";
+import { ReviewTrain } from "@/components/review-train";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-24 border-t border-border/60 bg-secondary/40">
+    <footer className="mt-24">
+      <ReviewTrain />
+      <div className="border-t border-border/60 bg-secondary/40">
       <div className="container-prose grid gap-10 py-14 sm:grid-cols-2 md:grid-cols-4">
         <div className="sm:col-span-2">
           <div className="font-display text-2xl">{SITE.name}</div>
@@ -36,6 +39,7 @@ export function SiteFooter() {
           <span>© 2026 {SITE.name} — Folded with butter, in Pune.</span>
           <span>Baked fresh, all day.</span>
         </div>
+      </div>
       </div>
     </footer>
   );

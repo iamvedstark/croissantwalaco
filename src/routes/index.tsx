@@ -190,6 +190,36 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* GALLERY */}
+      <section className="bg-secondary/40 py-20 md:py-24">
+        <div className="container-prose">
+          <div className="flex items-end justify-between">
+            <div className="max-w-xl">
+              <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">From the shop</div>
+              <h2 className="mt-3 font-display text-4xl sm:text-5xl">A peek inside.</h2>
+              <p className="mt-4 text-muted-foreground">
+                Storefront, counter, and the trays that come out of the oven all day.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+            {GALLERY.map((g, i) => (
+              <figure
+                key={i}
+                className={`overflow-hidden rounded-2xl bg-card shadow-sm ${i === 0 ? "col-span-2 row-span-2 md:col-span-2 md:row-span-2" : ""}`}
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className={`h-full w-full object-cover transition duration-500 hover:scale-[1.03] ${i === 0 ? "aspect-square md:aspect-[4/3]" : "aspect-square"}`}
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

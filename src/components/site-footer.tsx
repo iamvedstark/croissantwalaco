@@ -40,6 +40,7 @@ export function SiteFooter() {
           <span>Baked fresh, all day.</span>
         </div>
       </div>
+      </div>
     </footer>
   );
 }

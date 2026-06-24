@@ -1,9 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Clock, MapPin, Star } from "lucide-react";
-import heroImg from "@/assets/hero-croissants.jpg";
-import shopImg from "@/assets/shop-interior.jpg";
-import laminationImg from "@/assets/lamination.jpg";
+import heroAsset from "@/assets/photos/croissant-plate.jpg.asset.json";
+import shopAsset from "@/assets/photos/interior.jpg.asset.json";
+import laminationAsset from "@/assets/photos/breakfast.jpg.asset.json";
+import storefrontDay from "@/assets/photos/storefront-day.jpg.asset.json";
+import storefrontNight from "@/assets/photos/storefront-night.jpg.asset.json";
+import counter from "@/assets/photos/counter.jpg.asset.json";
+import sandwichSpread from "@/assets/photos/sandwich-spread.jpg.asset.json";
+import sandwichSpread2 from "@/assets/photos/sandwich-spread-2.jpeg.asset.json";
+import sandwichPair from "@/assets/photos/sandwich-pair.jpg.asset.json";
 import { SITE } from "@/lib/site-config";
+
+const heroImg = heroAsset.url;
+const shopImg = shopAsset.url;
+const laminationImg = laminationAsset.url;
+
+const GALLERY = [
+  { src: storefrontNight.url, alt: "Crosaaintwala & Co. storefront lit up at night" },
+  { src: sandwichSpread.url, alt: "Croissant sandwich spread with chips and ketchup" },
+  { src: counter.url, alt: "Pastry counter at the shop" },
+  { src: storefrontDay.url, alt: "Shop signage and outdoor seating in the daytime" },
+  { src: sandwichPair.url, alt: "Two croissant sandwiches on a marble table" },
+  { src: sandwichSpread2.url, alt: "Croissant sandwiches with sauces" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -168,6 +187,36 @@ function Home() {
             <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground hover:opacity-90">
               Find the shop <ArrowRight className="h-4 w-4" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* GALLERY */}
+      <section className="bg-secondary/40 py-20 md:py-24">
+        <div className="container-prose">
+          <div className="flex items-end justify-between">
+            <div className="max-w-xl">
+              <div className="text-xs uppercase tracking-[0.25em] text-muted-foreground">From the shop</div>
+              <h2 className="mt-3 font-display text-4xl sm:text-5xl">A peek inside.</h2>
+              <p className="mt-4 text-muted-foreground">
+                Storefront, counter, and the trays that come out of the oven all day.
+              </p>
+            </div>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
+            {GALLERY.map((g, i) => (
+              <figure
+                key={i}
+                className={`overflow-hidden rounded-2xl bg-card shadow-sm ${i === 0 ? "col-span-2 row-span-2 md:col-span-2 md:row-span-2" : ""}`}
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className={`h-full w-full object-cover transition duration-500 hover:scale-[1.03] ${i === 0 ? "aspect-square md:aspect-[4/3]" : "aspect-square"}`}
+                />
+              </figure>
+            ))}
           </div>
         </div>
       </section>

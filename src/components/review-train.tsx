@@ -75,76 +75,97 @@ export function ReviewTrain() {
 function Carriage({ name, text }: { name: string; text: string }) {
   return (
     <div className="relative shrink-0">
-      {/* coupler */}
-      <div className="absolute -left-3 top-1/2 z-10 h-2 w-4 -translate-y-1/2 rounded bg-ink" />
+      <div className="relative w-[420px] sm:w-[460px]">
+        {/* grey roof */}
+        <div className="h-3 rounded-t-md border-2 border-b-0 border-ink bg-[#b8b8b8]" />
 
-      <div className="relative w-[300px] sm:w-[340px]">
-        {/* roof rail */}
-        <div className="absolute -top-1 left-3 right-3 h-1.5 rounded-t-sm bg-ink" />
-        {/* headlight (small white lamp on top, like the photo) */}
-        <div className="absolute -top-3 left-1/2 h-2.5 w-4 -translate-x-1/2 rounded-t-full border border-ink bg-cream" />
+        {/* main blue body */}
+        <div className="relative flex border-2 border-ink bg-[#1d4ed8] shadow-lg">
+          {/* left vestibule */}
+          <Vestibule side="left" />
 
-        {/* yellow body */}
-        <div className="relative rounded-t-md border-2 border-ink bg-[#f5c518] pt-3 shadow-lg">
-          {/* two big square windows */}
-          <div className="grid grid-cols-2 gap-2 px-3">
-            {[0, 1].map((i) => (
-              <div
-                key={i}
-                className="relative aspect-[4/3] rounded-sm border-[3px] border-ink bg-gradient-to-b from-[#cfd8d3] via-[#aab8b1] to-[#7d8b85]"
-              >
-                {/* faint reflection */}
-                <div className="absolute inset-x-1 top-1 h-2 rounded-sm bg-cream/40" />
-              </div>
-            ))}
+          {/* middle section */}
+          <div className="flex flex-1 flex-col">
+            {/* yellow destination board with reviewer name */}
+            <div className="mx-auto mt-2 w-1/2 rounded-sm border border-ink bg-[#f5c518] px-2 py-0.5 text-center text-[9px] font-semibold uppercase tracking-[0.2em] text-ink">
+              {name}
+            </div>
+
+            {/* window strip */}
+            <div className="mt-2 grid grid-cols-7 gap-1 px-2">
+              {Array.from({ length: 7 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="aspect-[3/4] rounded-[2px] border border-ink bg-[#0b1e3f]"
+                >
+                  <div className="mx-0.5 mt-0.5 h-0.5 rounded-sm bg-cream/30" />
+                </div>
+              ))}
+            </div>
+
+            {/* review text — printed on the body below the windows */}
+            <div className="px-3 pb-2 pt-2">
+              <p className="text-[11px] leading-snug text-cream">"{text}"</p>
+              <div className="mt-1 text-[9px] tracking-widest text-[#f5c518]">★★★★★</div>
+            </div>
           </div>
 
-          {/* review text printed on the yellow flank */}
-          <div className="px-4 pb-3 pt-3">
-            <p className="font-display text-[13px] leading-snug text-ink">
-              "{text}"
-            </p>
-          </div>
+          {/* right vestibule */}
+          <Vestibule side="right" />
         </div>
 
-        {/* dark skirt with yellow chevron */}
-        <div className="relative h-9 border-x-2 border-b-2 border-ink bg-[#1a1d1a]">
-          {/* yellow chevron / triangle */}
-          <div
-            className="absolute left-1/2 top-1 h-0 w-0 -translate-x-1/2"
-            style={{
-              borderLeft: "14px solid transparent",
-              borderRight: "14px solid transparent",
-              borderTop: "12px solid #f5c518",
-            }}
-            aria-hidden
-          />
-          {/* reviewer plate */}
-          <div className="flex h-full items-center justify-between px-4 text-[10px] uppercase tracking-[0.2em] text-[#f5c518]">
-            <span>{name}</span>
-            <span>★★★★★</span>
-          </div>
+        {/* underframe */}
+        <div className="relative h-3 border-x-2 border-b-2 border-ink bg-[#0b1e3f]">
+          <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-cream/20" />
+        </div>
+
+        {/* bogies / wheel trucks */}
+        <div className="-mt-1 flex justify-between px-10">
+          <WheelTruck />
+          <WheelTruck />
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* wheels */}
-      <div className="-mt-2 flex justify-between px-8">
-        <Wheel />
-        <Wheel />
+function Vestibule({ side }: { side: "left" | "right" }) {
+  const borderClass = side === "left" ? "border-r-2" : "border-l-2";
+  return (
+    <div className={`relative w-9 shrink-0 ${borderClass} border-ink bg-[#15347a]`}>
+      {/* vestibule door window */}
+      <div className="mx-1.5 mt-2 h-10 rounded-sm border border-ink bg-[#0b1e3f]">
+        <div className="mx-0.5 mt-0.5 h-0.5 rounded bg-cream/30" />
       </div>
+      {/* buffer (the silver knob sticking out the end) */}
+      <div
+        className={`absolute top-1/2 h-3 w-2 -translate-y-1/2 rounded-sm border border-ink bg-[#c8c8c8] ${
+          side === "left" ? "-left-2" : "-right-2"
+        }`}
+      />
+    </div>
+  );
+}
+
+function WheelTruck() {
+  return (
+    <div className="flex items-center gap-1">
+      <Wheel />
+      <Wheel />
     </div>
   );
 }
 
 function Wheel() {
   return (
-    <div className="relative h-6 w-6 rounded-full border-2 border-ink bg-[#1a1d1a]">
+    <div className="relative h-5 w-5 rounded-full border-2 border-ink bg-[#1a1d1a]">
       <div className="absolute inset-1 rounded-full border border-cream/40" />
-      <div className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-cream/60" />
-      <div className="absolute left-1/2 top-1/2 h-0.5 w-3 -translate-x-1/2 -translate-y-1/2 bg-cream/60" />
+      <div className="absolute left-1/2 top-1/2 h-2.5 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-cream/60" />
+      <div className="absolute left-1/2 top-1/2 h-0.5 w-2.5 -translate-x-1/2 -translate-y-1/2 bg-cream/60" />
     </div>
   );
 }
+
 
 
 function Locomotive({ className = "" }: { className?: string }) {

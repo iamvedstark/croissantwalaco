@@ -30,38 +30,55 @@ export function ReviewTrain() {
         </div>
       </div>
 
+      {/* Station sign */}
+      <div className="container-prose pointer-events-none relative z-10 mb-3 flex justify-center">
+        <div className="rounded-md border-2 border-ink bg-[#1d4ed8] px-6 py-1.5 text-center shadow-md">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-[#f5c518]">Platform No. 1</div>
+          <div className="font-display text-lg leading-tight text-cream">Crosaaintwala Jn.</div>
+        </div>
+      </div>
+
       {/* Track */}
-      <div className="relative">
+      <div className="relative pt-10">
+        {/* Station furniture (fixed, behind train) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-10 flex items-end justify-between px-4 sm:px-12">
+          <StationLamp />
+          <StationBench />
+          <StationLamp />
+          <StationClock />
+          <StationBench />
+          <StationLamp />
+        </div>
+
+        {/* moving train */}
+        <div className="relative z-10 flex animate-train items-end gap-4 py-2 will-change-transform">
+          {loop.map((r, i) => (
+            <Carriage key={i} name={r.name} text={r.text} />
+          ))}
+        </div>
+
         {/* rails */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-3 h-[2px] bg-ink/70" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-6 h-[2px] bg-ink/70" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-3 z-20 h-[2px] bg-ink/70" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-6 z-20 h-[2px] bg-ink/70" />
         {/* sleepers */}
         <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-3 opacity-60"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-3 opacity-60"
           style={{
             backgroundImage:
               "repeating-linear-gradient(90deg, var(--ink) 0 6px, transparent 6px 28px)",
           }}
           aria-hidden
         />
-
-        {/* moving train */}
-        <div className="flex animate-train items-end gap-4 py-2 will-change-transform">
-          {loop.map((r, i) => (
-            <Carriage key={i} name={r.name} text={r.text} />
-          ))}
-        </div>
       </div>
 
       <style>{`
         @keyframes train-roll {
-          0%   { transform: translateX(100%); }
+          0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .animate-train {
           animation: train-roll 25s linear infinite;
         }
-        .animate-train:hover { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) {
           .animate-train { animation-duration: 180s; }
         }

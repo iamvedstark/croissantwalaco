@@ -212,7 +212,6 @@ function Carriage({ name, text, index }: { name: string; text: string; index: nu
         {/* Review text panel */}
         <foreignObject x="20" y="88" width="420" height="26">
           <div
-            xmlns="http://www.w3.org/1999/xhtml"
             style={{
               fontSize: "10px",
               lineHeight: "1.25",

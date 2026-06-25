@@ -59,7 +59,7 @@ export function ReviewTrain() {
           100% { transform: translateX(-50%); }
         }
         .animate-train {
-          animation: train-roll 40s linear infinite;
+          animation: train-roll 25s linear infinite;
         }
         .animate-train:hover { animation-play-state: paused; }
         @media (prefers-reduced-motion: reduce) {

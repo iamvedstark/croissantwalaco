@@ -181,3 +181,41 @@ function Wheel() {
   );
 }
 
+
+function StationLamp() {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="h-2 w-6 rounded-sm border border-ink bg-[#f5c518] shadow-[0_0_12px_rgba(245,197,24,0.6)]" />
+      <div className="h-1 w-8 -mt-px rounded-sm border border-ink bg-ink/80" />
+      <div className="h-16 w-1 bg-ink" />
+      <div className="h-1.5 w-5 bg-ink" />
+    </div>
+  );
+}
+
+function StationBench() {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="h-1.5 w-16 rounded-sm border border-ink bg-[#7a4a23]" />
+      <div className="-mt-px h-1.5 w-16 border-x border-b border-ink bg-[#5e3717]" />
+      <div className="flex w-16 justify-between px-1">
+        <div className="h-4 w-1 bg-ink/80" />
+        <div className="h-4 w-1 bg-ink/80" />
+      </div>
+    </div>
+  );
+}
+
+function StationClock() {
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative h-9 w-9 rounded-full border-2 border-ink bg-cream">
+        <div className="absolute left-1/2 top-1/2 h-3 w-0.5 -translate-x-1/2 -translate-y-full bg-ink" />
+        <div className="absolute left-1/2 top-1/2 h-0.5 w-2.5 -translate-y-1/2 bg-ink" />
+        <div className="absolute left-1/2 top-1/2 h-1 w-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink" />
+      </div>
+      <div className="h-12 w-1 bg-ink" />
+      <div className="h-1.5 w-6 bg-ink" />
+    </div>
+  );
+}

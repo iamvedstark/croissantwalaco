@@ -272,7 +272,7 @@ function Wheel({ cx, cy }: { cx: number; cy: number }) {
       {/* tyre */}
       <circle cx={cx} cy={cy} r="11" fill="#0a0a0a" stroke="#2a2a2a" strokeWidth="1" />
       {/* hub + spokes (spinning) */}
-      <g className="wheel-spin" style={{ transformBox: "fill-box", transformOrigin: `${cx}px ${cy}px` } as React.CSSProperties}>
+      <g className="wheel-spin" style={{ transformOrigin: `${cx}px ${cy}px` } as React.CSSProperties}>
         <circle cx={cx} cy={cy} r="8" fill="none" stroke="#5a5f64" strokeWidth="0.6" />
         <line x1={cx - 8} x2={cx + 8} y1={cy} y2={cy} stroke="#7a7f84" strokeWidth="1.2" />
         <line x1={cx} x2={cx} y1={cy - 8} y2={cy + 8} stroke="#7a7f84" strokeWidth="1.2" />
